@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzk.ssm.dao.StudentDao">
+
+	<resultMap type="com.zzk.ssm.entity.Student" id="studentMap">
+		<id column="stu_id" property="stuId" />
+		<result column="student_name" property="studentName" />
+		<result column="student_age" property="studentAge" />
+	</resultMap>
+
+	<select id="listStudents" resultType="com.zzk.ssm.entity.Student">
+		SELECT
+		stu_id,
+		student_name,
+		student_age
+		FROM HELLOWORLD_STUDENT
+	</select>
+
+	<select id="getStudentById" resultMap="studentMap"
+		parameterType="Integer">
+		SELECT
+		stu_id,
+		student_name,
+		student_age
+		FROM
+		HELLOWORLD_STUDENT
+		WHERE stu_id = #{stuId}
+	</select>
+
+	<insert id="insertStudent" useGeneratedKeys="true" keyProperty="stuId"
+		keyColumn="stu_id">
+		<selectKey keyProperty="stuId" resultType="Integer" order="BEFORE">
+			SELECT zzk_id_seq.nextval stuId from dual
+		</selectKey>
+		INSERT INTO
+		HELLOWORLD_STUDENT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			stu_id,
+			<if test="studentName != null">student_name,</if>
+			<if test="studentAge != null">student_age</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{stuId},
+			<if test="studentName != null">
+				#{studentName},
+			</if>
+			<if test="studentAge != null">
+				#{studentAge},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteStudent" parameterType="Integer">
+		DELETE FROM
+		HELLOWORLD_STUDENT WHERE stu_id = #{stuId}
+	</delete>
+
+	<update id="updateStudent" parameterType="student">
+		update HELLOWORLD_STUDENT
+		<set>
+			<if test="studentName != null">student_name=#{studentName},</if>
+			<if test="studentAge != null">student_age=#{studentAge},</if>
+		</set>
+		where stu_id=#{stuId}
+	</update>
+
+</mapper>
