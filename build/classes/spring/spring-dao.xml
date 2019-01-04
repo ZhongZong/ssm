@@ -30,9 +30,9 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<!-- 配置连接池属性 -->
 		<property name="driverClass" value="oracle.jdbc.OracleDriver" />
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=)(PORT=1521))(CONNECT_DATA =(SERVICE_NAME =original)))" />
-		<property name="user" value="" />
-		<property name="password" value="" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.21.58.52)(PORT=1521))(CONNECT_DATA =(SERVICE_NAME =original)))" />
+		<property name="user" value="amicos" />
+		<property name="password" value="redhat_2016" />
 
 		<!-- c3p0连接池的私有属性 -->
 		<property name="maxPoolSize" value="30" />
