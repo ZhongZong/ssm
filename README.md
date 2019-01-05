@@ -10,3 +10,4 @@
 4. 将项目直接运行在tomcat中,浏览器中访问[http://localhost:8080/ssm/test](http://localhost:8080/ssm/test "测试地址"),将看到```Hello SSM!```,到此项目启动成功.
 # 杂项:
 - 项目开发环境:JDK1.7,Eclipse(Indigo),Oracle(开发库)
+- 如果启动项目时出现```creating bean error```时请确认eclipse(myeclipse)project菜单栏中的Build Automatically是否勾选上!
