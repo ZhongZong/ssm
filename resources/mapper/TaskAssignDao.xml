@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzk.ssm.dao.TaskAssignDao">
+
+
+	<select id="listTasks" resultType="com.zzk.ssm.entity.TaskAssign">
+		select task.taskid "taskId",
+			task.name "name",
+			task.description "description",
+			task.createdate "createDate",
+			task.creator "creatorId",
+			task.notes "notes",
+			et.task_type "taskType",
+			et.task_status "taskStatus"
+		from amicos_webenter.zh_taskassign_task task
+			left join amicos_webenter.zh_taskassign_extrataskassign et
+			on task.taskid = et.taskid
+		where task.taskid IN (SELECT taskob.taskid
+							from amicos_webenter.zh_taskassign_taskobserver taskob
+							where taskob.empid = 'A04900')
+	</select>
+
+
+</mapper>
